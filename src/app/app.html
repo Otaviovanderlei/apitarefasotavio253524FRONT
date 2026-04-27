@@ -1,20 +1,25 @@
-<div class="main">
-  <h1>Otavio 25352
-  <br> - Guilherme 252862</h1>
+<div class="container">
+  <h1>📝 Otavio 253524 -
+    <br>guilherme 252862
+  </h1>
 
-  <input class="lg-text-input" #campoNovoItem />
-
-  <button class="btn-primary" (click)="CREATE_tarefa(campoNovoItem.value)">
-    Adicionar Tarefa
-  </button>
+  <div class="input-group">
+    <input #novaTarefa type="text" placeholder="Digite uma tarefa..." />
+    <button (click)="CREATE_tarefa(novaTarefa.value); novaTarefa.value=''">
+      Adicionar
+    </button>
+  </div>
 
   <ul>
-    <li *ngFor="let tarefaDoLoop of arrayDeTarefas()">
-      <app-item 
-        [tarefa]="tarefaDoLoop" 
-        (remover)="DELETE_tarefa($event)" 
-        (modificaTarefa)="UPDATE_tarefa($event)">
-      </app-item>
+    <li *ngFor="let tarefa of arrayDeTarefas()">
+      <span [class.done]="tarefa.statusRealizada">
+        {{ tarefa.descricao }}
+      </span>
+
+      <div class="actions">
+        <button (click)="UPDATE_tarefa(tarefa)">✔</button>
+        <button (click)="DELETE_tarefa(tarefa)">❌</button>
+      </div>
     </li>
   </ul>
 </div>
