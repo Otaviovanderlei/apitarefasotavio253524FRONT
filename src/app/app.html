@@ -1,4 +1,5 @@
 <div class="container">
+ 
   <h1>📝 Otavio 253524 -
     <br>guilherme 252862
   </h1>
@@ -6,20 +7,30 @@
   <div class="input-group">
     <input #novaTarefa type="text" placeholder="Digite uma tarefa..." />
     <button (click)="CREATE_tarefa(novaTarefa.value); novaTarefa.value=''">
-      Adicionar
+      ➕
     </button>
   </div>
 
   <ul>
-    <li *ngFor="let tarefa of arrayDeTarefas()">
-      <span [class.done]="tarefa.statusRealizada">
+    <li *ngFor="let tarefa of arrayDeTarefas()" class="item">
+
+      <label class="checkbox-container">
+        <input 
+          type="checkbox" 
+          [checked]="tarefa.statusRealizada"
+          (change)="UPDATE_tarefa(tarefa)"
+        />
+        <span class="checkmark"></span>
+      </label>
+
+      <span class="texto" [class.done]="tarefa.statusRealizada">
         {{ tarefa.descricao }}
       </span>
 
-      <div class="actions">
-        <button (click)="UPDATE_tarefa(tarefa)">✔</button>
-        <button (click)="DELETE_tarefa(tarefa)">❌</button>
-      </div>
+      <button class="delete" (click)="DELETE_tarefa(tarefa)">
+        🗑️
+      </button>
+
     </li>
   </ul>
 </div>
