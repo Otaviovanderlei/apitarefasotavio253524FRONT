@@ -1,36 +1,25 @@
-<div class="container">
- 
-  <h1>📝 Otavio 253524 -
-    <br>guilherme 252862
+<div class="main">
+  <h1>
+    📝 Todo App  
+    <span>Otavio 25352 - Guilherme 252862</span>
   </h1>
 
-  <div class="input-group">
-    <input #novaTarefa type="text" placeholder="Digite uma tarefa..." />
-    <button (click)="CREATE_tarefa(novaTarefa.value); novaTarefa.value=''">
-      ➕
+  <div class="input-area">
+    <input class="lg-text-input" #campoNovoItem placeholder="Digite uma tarefa..." />
+
+    <button class="btn-primary"
+      (click)="CREATE_tarefa(campoNovoItem.value); campoNovoItem.value=''">
+      Adicionar
     </button>
   </div>
 
   <ul>
-    <li *ngFor="let tarefa of arrayDeTarefas()" class="item">
-
-      <label class="checkbox-container">
-        <input 
-          type="checkbox" 
-          [checked]="tarefa.statusRealizada"
-          (change)="UPDATE_tarefa(tarefa)"
-        />
-        <span class="checkmark"></span>
-      </label>
-
-      <span class="texto" [class.done]="tarefa.statusRealizada">
-        {{ tarefa.descricao }}
-      </span>
-
-      <button class="delete" (click)="DELETE_tarefa(tarefa)">
-        🗑️
-      </button>
-
+    <li *ngFor="let tarefaDoLoop of arrayDeTarefas()">
+      <app-item 
+        [tarefa]="tarefaDoLoop" 
+        (remover)="DELETE_tarefa($event)" 
+        (modificaTarefa)="UPDATE_tarefa($event)">
+      </app-item>
     </li>
   </ul>
 </div>
