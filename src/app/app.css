@@ -29,6 +29,7 @@ h1 span {
 
 .input-area {
   display: flex;
+  flex-direction: column;
   gap: 10px;
   margin-bottom: 20px;
 }
@@ -45,7 +46,9 @@ h1 span {
 .lg-text-input:focus {
   border-color: #4CAF50;
 }
-
+.btn-primary {
+  width: 100%; /* deixa o botão do tamanho do input */
+}
 .btn-primary {
   background: #4CAF50;
   color: white;
